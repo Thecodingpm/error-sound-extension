@@ -1,0 +1,153 @@
+{
+  "name": "error-sound-extension",
+  "displayName": "Error Sound – Meme Edition",
+  "description": "Plays hilarious meme sound effects whenever an error appears in the terminal, problems panel, or failed tasks.",
+  "version": "1.0.0",
+  "publisher": "REPLACE_WITH_YOUR_PUBLISHER_ID",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thecodingpm/error-sound-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Thecodingpm/error-sound-extension/issues"
+  },
+  "homepage": "https://github.com/Thecodingpm/error-sound-extension#readme",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "meme",
+    "sound",
+    "error",
+    "fun",
+    "terminal"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "errorSound.changeSound",
+        "title": "Change Error Sound",
+        "category": "Error Sound"
+      },
+      {
+        "command": "errorSound.toggle",
+        "title": "Toggle Sound Extension",
+        "category": "Error Sound"
+      },
+      {
+        "command": "errorSound.enableRandomMode",
+        "title": "Enable Random Mode",
+        "category": "Error Sound"
+      },
+      {
+        "command": "errorSound.testSound",
+        "title": "Test Current Sound",
+        "category": "Error Sound"
+      }
+    ],
+    "configuration": {
+      "title": "Error Sound – Meme Edition",
+      "properties": {
+        "errorSound.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable the meme sound extension."
+        },
+        "errorSound.selectedSound": {
+          "type": "string",
+          "default": "faaah",
+          "enum": [
+            "aw-hell-nah-man",
+            "cat-laugh-meme-1",
+            "evil-cat-laugh",
+            "faaah",
+            "indian-song",
+            "jhinka-chika-jhinka-chika",
+            "m-e-o-w",
+            "snore-mimimimimimi",
+            "we-are-charlie-kirk-song"
+          ],
+          "enumDescriptions": [
+            "Aw Hell Nah Man – nope!",
+            "Cat Laugh Meme – hehehe",
+            "Evil Cat Laugh – muahahaha",
+            "Faaah – dramatic sigh",
+            "Indian Song – vibe check",
+            "Jhinka Chika – banger beat",
+            "M-E-O-W – classic meow",
+            "Snore Mimimimi – zzz",
+            "We Are Charlie Kirk Song – banger"
+          ],
+          "description": "The sound effect to play when an error is detected."
+        },
+        "errorSound.randomMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Play a random sound effect each time an error is detected."
+        },
+        "errorSound.volume": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Volume level for sound effects (0.0 – 1.0)."
+        },
+        "errorSound.cooldownMs": {
+          "type": "number",
+          "default": 3000,
+          "minimum": 500,
+          "maximum": 30000,
+          "description": "Minimum milliseconds between sound effect triggers to prevent spam."
+        },
+        "errorSound.detectTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Detect errors from integrated terminal output."
+        },
+        "errorSound.detectDiagnostics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Detect errors from the Problems panel (language diagnostics)."
+        },
+        "errorSound.detectTasks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Detect errors from failed VS Code tasks."
+        },
+        "errorSound.customErrorKeywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Additional custom keywords to treat as errors (case-insensitive)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "npx vsce package",
+    "publish": "npx vsce publish",
+    "publish:ovsx": "npx ovsx publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
